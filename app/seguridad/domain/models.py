@@ -50,7 +50,7 @@ class LogActivity(models.Model):
     CHOICE_TIPO = ((TIPO_MOBILE, 'Mobile'), (TIPO_TABLET, 'Tablet'), (TIPO_PC, 'Pc'))
 
     date = models.DateTimeField(auto_now_add=True)
-    content_type = models.CharField(max_length=80, null=True)
+    content_type = models.CharField(max_length=160, null=True)
     method = models.CharField(max_length=8, null=True)
     ip_address = models.GenericIPAddressField(null=True)
     user_agent = models.TextField(null=True)
