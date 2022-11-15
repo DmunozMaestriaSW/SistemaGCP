@@ -30,7 +30,7 @@ class RequestMiddleware(CommonMiddleware):
 
         #Log
         user_agent = request.META.get("HTTP_USER_AGENT")
-        print('META: ', request.META)
+        #print('META: ', request.META)
 
         #TODO: https://allwin-raju-12.medium.com/django-get-browser-and-os-info-from-the-http-requests-ae32147a9519
 
@@ -44,9 +44,9 @@ class RequestMiddleware(CommonMiddleware):
 
         oagent = request.user_agent
 
-        print('browser', oagent.browser)
-        print('so', oagent.os)
-        print('device', oagent.device)
+        #print('browser', oagent.browser)
+        #print('so', oagent.os)
+        #print('device', oagent.device)
         stype = LogActivity.TIPO_OTHER
         if oagent.is_mobile:
             stype = LogActivity.TIPO_MOBILE
@@ -54,6 +54,9 @@ class RequestMiddleware(CommonMiddleware):
             stype = LogActivity.TIPO_TABLET
         if oagent.is_pc:
             stype = LogActivity.TIPO_PC
+
+        from app.core.application.core_app_service import CoreAppService
+        request.META['REMOTE_ADDR'] = CoreAppService.get_request_ip(request)
 
 
 
